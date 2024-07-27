@@ -1,0 +1,33 @@
+column
+id
+korean_word
+translation
+is_noun: { personal: refering to person;
+          object: refer to object (physical)
+          abstract: represent intangible concepts
+          mass: cannot be quantified
+          event: events/actions/ocurance
+          place:place
+          animal: animals
+        }
+is_pronoun : 
+final_consonant
+is_adjetive
+is_place
+is_verb
+
+ALTER TABLE korean_words MODIFY COLUMN is_noun ENUM('personal', 'object', 'abstract', 'mass', 'event', 'place', 'pronoun', 'animal','obj_pronoun', 'person_pronoun');
+
+
+UPDATE korean_words
+SET is_noun = 'personal'
+WHERE korean_word IN ('도시', '이름', '저', '나', '남자', '여자');
+
+UPDATE korean_words
+SET is_noun = 'object'
+WHERE korean_word IN ('도시', '남자', '여자', '것');
+
+UPDATE korean_words
+SET is_noun = 'place'
+WHERE korean_word = '도시';
+
