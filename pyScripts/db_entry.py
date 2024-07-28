@@ -1,8 +1,5 @@
 import mysql.connector
 
-def get_wordlist():
-    import mysql.connector
-
 def get_translatelist(words):
     # Connect to the MariaDB database
     conn = mysql.connector.connect(
