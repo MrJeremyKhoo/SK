@@ -17,6 +17,13 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+templates = Jinja2Templates(directory="templates")
+
+@app.get("/crafting/{id}", responses_class=HTMLResponse)
+async def read_item(request: Request, id: str):
+    return templates.TemplateResponse(
+        request=request, name="crafting.html", context={"id": id}
+    )
 
 @app.get("/")
 def read_root():
