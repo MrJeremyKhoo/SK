@@ -6,7 +6,7 @@ def insert_data_from_csv(csv_file):
     conn = mysql.connector.connect(
         host="localhost",
         user="username",
-        password="password",
+        password="assword",
         database="kr_vocab"
     )
 
@@ -26,9 +26,19 @@ def insert_data_from_csv(csv_file):
         for row in csv_reader:
             cursor.execute(query, row)
 
-    # Commit the transaction
-    conn.commit()
 
+    query2 = """
+    UPDATE korean_words
+    SET
+        id = NULLIF(id, 0),
+        is_adjetive = NULLIF(is_adjetive, 0),
+        is_verb = NULLIF(is_verb, 0),
+        is_preposition = NULLIF(is_preposition, 0)
+    WHERE id = 0 OR is_adjetive = 0 OR is_verb = 0 OR is_preposition = 0;
+    """
+    cursor.execute(query2)
+
+    conn.commit()
     # Close the cursor and connection
     cursor.close()
     conn.close()
