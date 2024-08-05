@@ -19,7 +19,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
-@app.get("/crafting/{id}", responses_class=HTMLResponse)
+@app.get("/crafting/{id}", response_class=HTMLResponse)
 async def read_item(request: Request, id: str):
     return templates.TemplateResponse(
         request=request, name="crafting.html", context={"id": id}
@@ -37,6 +37,11 @@ async def favicon():
 @app.get("/styles.css", include_in_schema=False)
 async def favicon():
     return FileResponse("static/styles.css")
+
+@app.get("/dropdown.js", include_in_schema=False)
+async def favicon():
+    return FileResponse("static/dropdown.js")
+
 
 @app.get("/drawing.svg", include_in_schema=False)
 async def favicon():

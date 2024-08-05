@@ -21,17 +21,32 @@ img.logo {
   border: solid 1px #3d3838;
 }
 
-.sk-yellow {
-  background-color: #f0edd8;
+.sk-violet {
+  background-color: #70566D;
 }
 
 .sk-green {
-  background-color: #D3F8E3;
+  background-color: #337357;
 }
 
 .sk-pink {
   background-color: #f4e4e1;
 }
+
+.sk-purple {
+  background-color: #42273B;
+}
+
+.sk-blue {
+  background-color: #00303D;
+}
+
+
+.sk-gold{
+  background-color: #CCAA00;
+}
+
+
 
 .playfair-display {
   font-family: "Playfair Display", serif;
