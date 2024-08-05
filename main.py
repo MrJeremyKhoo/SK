@@ -16,6 +16,7 @@ import subprocess
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 
 templates = Jinja2Templates(directory="templates")
 
@@ -37,6 +38,16 @@ async def favicon():
 @app.get("/styles.css", include_in_schema=False)
 async def favicon():
     return FileResponse("static/styles.css")
+
+@app.get("/templates/styles.css", include_in_schema=False)
+async def favicon():
+    return FileResponse("templates/styles.css")
+
+@app.get("/templates/scripts.js", include_in_schema=False)
+async def favicon():
+    return FileResponse("templates/scripts.js")
+
+
 
 @app.get("/dropdown.js", include_in_schema=False)
 async def favicon():
