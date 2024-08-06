@@ -21,11 +21,16 @@ app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 templates = Jinja2Templates(directory="templates")
 
 @app.get("/crafting/{id}", response_class=HTMLResponse)
-async def read_item(request: Request, id: str):
-    return templates.TemplateResponse(
-        request=request, name="crafting.html", context={"id": id}
-    )
 
+async def read_item(request: Request, id: str):
+    items = ['도시', '이름', '저', '나', '남자', '여자', '이', '그', '저', '것', '이것', '그것', '저것', '의자', '탁자', '선생님', '침대', '집', '차', '사람', '책', '컴퓨터', '나무', '소파', '중국', '일본', '문', '의사', '학생', '이다']
+    return templates.TemplateResponse(
+        "crafting.html",
+        {
+            "request": request,
+            "items": items
+        }
+    )
 @app.get("/")
 def read_root():
  with open("static/index.html") as f:

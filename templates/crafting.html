@@ -41,7 +41,7 @@
   <section id="hero" class="sk-pink playfield">
    <div class="wrapper">
         <h1>Select Vocabulary</h1>
-        <form id="multiSelectForm">
+        <form id="multiSelectForm" action="#">
 
             <input type="checkbox" id="accordion1">
             <label for="accordion1">
@@ -49,53 +49,30 @@
                 <span class="cross"></span>
             </label>
 
-            <div class="content">
-                <button type="button" class="select-all-btn">Select All</button>
-                <div class="dropdown-table">
-                    <div class="dropdown-row">
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="selectOptions" value="Option 1" id="option1">
-                            <label for="option1">Option 1</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="selectOptions" value="Option 2" id="option2">
-                            <label for="option2">Option 2</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="selectOptions" value="Option 3" id="option3">
-                            <label for="option3">Option 3</label>
-                        </div>
-                    </div>
-                    <div class="dropdown-row">
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="selectOptions" value="Option 4" id="option4">
-                            <label for="option4">Option 4</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="selectOptions" value="Option 5" id="option5">
-                            <label for="option5">Option 5</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="selectOptions" value="Option 6" id="option6">
-                            <label for="option6">Option 6</label>
-                        </div>
-                    </div>
-                    <div class="dropdown-row">
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="selectOptions" value="Option 7" id="option7">
-                            <label for="option7">Option 7</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="selectOptions" value="Option 8" id="option8">
-                            <label for="option8">Option 8</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="selectOptions" value="Option 9" id="option9">
-                            <label for="option9">Option 9</label>
-                        </div>
-                    </div>
+ <div class="content">
+        <button type="button" class="select-all-btn">Select All</button>
+        <div class="dropdown-table">
+            {% set num_items = items | length %}
+            {% set num_rows = (num_items + 4) // 5 %}  <!-- Calculates number of rows, rounding up to the nearest multiple of 5 -->
+
+            {% for row in range(num_rows) %}
+                <div class="dropdown-row">
+                    {% for col in range(5) %}
+                        {% set index = row * 5 + col %}
+                        {% if index < num_items %}
+                            <div class="dropdown-cell">
+                                <input type="checkbox" name="selectOptions" value="{{ items[index] }}" id="option{{ index }}">
+                                <label for="option{{ index }}">{{ items[index] }}</label>
+                            </div>
+                        {% else %}
+                            <!-- Empty cell for alignment if there are fewer items than cells -->
+                            <div class="dropdown-cell"></div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            </div>
+            {% endfor %}
+        </div>
+    </div>
 
             <input type="checkbox" id="accordion2">
             <label for="accordion2">
@@ -105,56 +82,34 @@
             <div class="content">
                 <button type="button" class="select-all-btn">Select All</button>
                 <div class="dropdown-table">
-                    <div class="dropdown-row">
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="moreOptions" value="Option 10" id="moreOption10">
-                            <label for="moreOption10">Option 10</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="moreOptions" value="Option 11" id="moreOption11">
-                            <label for="moreOption11">Option 11</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="moreOptions" value="Option 12" id="moreOption12">
-                            <label for="moreOption12">Option 12</label>
-                        </div>
-                    </div>
-                    <div class="dropdown-row">
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="moreOptions" value="Option 13" id="moreOption13">
-                            <label for="moreOption13">Option 13</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="moreOptions" value="Option 14" id="moreOption14">
-                            <label for="moreOption14">Option 14</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="moreOptions" value="Option 15" id="moreOption15">
-                            <label for="moreOption15">Option 15</label>
-                        </div>
-                    </div>
-                    <div class="dropdown-row">
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="moreOptions" value="Option 16" id="moreOption16">
-                            <label for="moreOption16">Option 16</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="moreOptions" value="Option 17" id="moreOption17">
-                            <label for="moreOption17">Option 17</label>
-                        </div>
-                        <div class="dropdown-cell">
-                            <input type="checkbox" name="moreOptions" value="Option 18" id="moreOption18">
-                            <label for="moreOption18">Option 18</label>
-                        </div>
-                    </div>
+            {% set num_items = items | length %}
+            {% set num_rows = (num_items + 4) // 5 %}  <!-- Calculates number of rows, rounding up to the nearest multiple of 5 -->
+
+            {% for row in range(num_rows) %}
+                <div class="dropdown-row">
+                    {% for col in range(5) %}
+                        {% set index = row * 5 + col %}
+                        {% if index < num_items %}
+                            <div class="dropdown-cell">
+                                <input type="checkbox" name="selectOptions" value="{{ items[index] }}" id="option{{ index }}">
+                                <label for="option{{ index }}">{{ items[index] }}</label>
+                            </div>
+                        {% else %}
+                            <!-- Empty cell for alignment if there are fewer items than cells -->
+                            <div class="dropdown-cell"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
                 </div>
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit">
+              <span class="button_top">Submit</span>
+            </button>
         </form>
     </div>
   </section>
-  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/templates/scripts.js"></script>
 
