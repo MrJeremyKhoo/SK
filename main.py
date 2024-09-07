@@ -31,6 +31,7 @@ async def read_item(request: Request, id: str):
             "items": items
         }
     )
+
 @app.get("/")
 def read_root():
  with open("static/index.html") as f:

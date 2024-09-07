@@ -53,8 +53,7 @@
         <button type="button" class="select-all-btn">Select All</button>
         <div class="dropdown-table">
             {% set num_items = items | length %}
-            {% set num_rows = (num_items + 4) // 5 %}  <!-- Calculates number of rows, rounding up to the nearest multiple of 5 -->
-
+            {% set num_rows = (num_items + 4) // 5 %}
             {% for row in range(num_rows) %}
                 <div class="dropdown-row">
                     {% for col in range(5) %}

@@ -6,7 +6,9 @@ def get_translatelist(words):
         host="localhost",
         user="username",
         password="assword",
-        database="kr_vocab"
+        database="kr_vocab",
+        collation='utf8mb4_unicode_ci'  # Use a supported collation
+        
     )
 
     # Create a cursor object to execute SQL queries
